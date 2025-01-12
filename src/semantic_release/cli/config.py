@@ -713,7 +713,8 @@ class RuntimeContext:
                         # Supports walrus, equals sign, or colon as assignment operator ignoring whitespace separation
                         r"\s*(:=|[:=])\s*",
                         # Supports optional matching quotations around version number of a SEMVER pattern
-                        f"""(?P<quote2>['"])?(?P<version>{SEMVER_REGEX.pattern})(?P=quote2)?""",
+                        # Supports docker image name as prefix separated by colon 
+                        f"""(?P<quote2>['"])?(?P<version>(.*:)?{SEMVER_REGEX.pattern})(?P=quote2)?""",
                     ],
                 )
                 pd = PatternVersionDeclaration(path, search_text)
