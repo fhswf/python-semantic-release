@@ -136,6 +136,7 @@ class PatternVersionDeclaration(VersionDeclarationABC):
     """
 
     _VERSION_GROUP_NAME = "version"
+    _PREFIX_GROUP_NAME = "prefix"
 
     def __init__(self, path: Path | str, search_text: str) -> None:
         super().__init__(path, search_text)
@@ -188,7 +189,9 @@ class PatternVersionDeclaration(VersionDeclarationABC):
             log.debug("match spans characters %s:%s", i, j)
             ii, jj = m.span(self._VERSION_GROUP_NAME)
             log.debug("version group spans characters %s:%s", ii, jj)
-            return s[i:ii] + str(new_version) + s[jj:j]
+            prefix = m.group(self._VERSION_PREFIX_NAME)
+            log.debug("prefix: ", prefix)
+            return s[i:ii] + str(prefix) + str(new_version) + s[jj:j]
 
         new_content, n_matches = self.search_re.subn(
             swap_version, self.content, re.MULTILINE

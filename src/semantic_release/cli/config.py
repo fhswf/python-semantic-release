@@ -714,7 +714,7 @@ class RuntimeContext:
                         r"\s*(:=|[:=])\s*",
                         # Supports optional matching quotations around version number of a SEMVER pattern
                         # Supports docker image name as prefix separated by colon 
-                        f"""(?P<quote2>['"])?(?P<version>(.*:)?{SEMVER_REGEX.pattern})(?P=quote2)?""",
+                        f"""(?P<quote2>['"])?(?P<prefix>(.*:)?)(?P<version>{SEMVER_REGEX.pattern})(?P=quote2)?""",
                     ],
                 )
                 pd = PatternVersionDeclaration(path, search_text)
