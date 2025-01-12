@@ -189,7 +189,7 @@ class PatternVersionDeclaration(VersionDeclarationABC):
             log.debug("match spans characters %s:%s", i, j)
             ii, jj = m.span(self._VERSION_GROUP_NAME)
             log.debug("version group spans characters %s:%s", ii, jj)
-            prefix = m.group(self._PREFIX_GROUP_NAME)
+            prefix = str(m.group(self._PREFIX_GROUP_NAME))
             log.debug("prefix: ", prefix)
             return s[i:ii] + str(prefix) + str(new_version) + s[jj:j]
 
