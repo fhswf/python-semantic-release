@@ -191,7 +191,7 @@ class PatternVersionDeclaration(VersionDeclarationABC):
             log.debug("version group spans characters %s:%s", ii, jj)
             prefix = str(m.group(self._PREFIX_GROUP_NAME))
             log.debug(f"prefix: {prefix}")
-            return s[i:ii] + str(prefix) + str(new_version) + s[jj:j]
+            return s[i:ii] + str(new_version) + s[jj:j]
 
         new_content, n_matches = self.search_re.subn(
             swap_version, self.content, re.MULTILINE
